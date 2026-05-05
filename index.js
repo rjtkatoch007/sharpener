@@ -22,3 +22,9 @@ const para = document.createElement('p');
 para.textContent = 'Please visit us again';
 thanksDiv.appendChild(para);
 
+const fruit = document.getElementsByClassName('fruits');
+for (let i = 0; i < fruit.length;i++){
+    fruit[i].style.fontWeight = 'bold';
+}
+fruit[2].style.backgroundColor = 'yellow';
+
