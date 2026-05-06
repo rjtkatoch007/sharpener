@@ -44,16 +44,30 @@
 //}
 
 // 1. Select the basket heading by id and change color to brown
-const basketHeading = document.querySelector('#basket-heading');
-basketHeading.style.color = 'brown';
+//const basketHeading = document.querySelector('#basket-heading');
+//basketHeading.style.color = 'brown';
 
 // 2. Change background and text color of even fruit items
-const evenFruits = document.querySelectorAll('.fruit:nth-child(even)');
-evenFruits.forEach(fruit => {
-  fruit.style.backgroundColor = 'red';
-  fruit.style.color = 'white';
-});
+//const evenFruits = document.querySelectorAll('.fruit:nth-child(even)');
+//evenFruits.forEach(fruit => {
+  //fruit.style.backgroundColor = 'red';
+  //fruit.style.color = 'white';
+//});
 
 // 3. Remove the default list-style (dots) from the fruit list
+//const fruitList = document.querySelector('.fruits');
+//fruitList.style.listStyleType = 'none';
+
+// 1 & 2. Create h3 sub-heading, make it italic, and add it after the main heading
+const mainHeading = document.getElementById('main-heading');
+const subHeading = document.createElement('h3');
+subHeading.textContent = 'Buy high quality organic fruits online';
+subHeading.style.fontStyle = 'italic';
+mainHeading.insertAdjacentElement('afterend', subHeading);
+
+// 3 & 4. Create paragraph, set text and ID, and add it before the unordered list
 const fruitList = document.querySelector('.fruits');
-fruitList.style.listStyleType = 'none';
+const totalFruits = document.createElement('p');
+totalFruits.textContent = 'Total fruits: 4';
+totalFruits.id = 'fruits-total';
+fruitList.insertAdjacentElement('beforebegin', totalFruits);
