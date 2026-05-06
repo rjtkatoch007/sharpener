@@ -22,9 +22,23 @@ const para = document.createElement('p');
 para.textContent = 'Please visit us again';
 thanksDiv.appendChild(para);
 
-const fruit = document.getElementsByClassName('fruits');
-for (let i = 0; i < fruit.length;i++){
-    fruit[i].style.fontWeight = 'bold';
-}
-fruit[2].style.backgroundColor = 'yellow';
+// 1. Make the 3rd element (orange) have a yellow background
+const fruits = document.getElementsByClassName('fruit');
+fruits[2].style.backgroundColor = 'yellow';
 
+// 2. Make all elements in the list have bold font
+for (let i = 0; i < fruits.length; i++) {
+  fruits[i].style.fontWeight = 'bold';
+}
+
+// Get all li elements
+const listItems = document.getElementsByTagName('li');
+
+// 1. Change the color of the 5th "li" (Mango) to red
+// We use index 4 because arrays/collections start at 0
+listItems[4].style.color = 'red';
+
+// 2. Make all the "li" tags italic
+for (let i = 0; i < listItems.length; i++) {
+  listItems[i].style.fontStyle = 'italic';
+}
