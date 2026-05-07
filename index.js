@@ -59,15 +59,58 @@
 //fruitList.style.listStyleType = 'none';
 
 // 1 & 2. Create h3 sub-heading, make it italic, and add it after the main heading
-const mainHeading = document.getElementById('main-heading');
-const subHeading = document.createElement('h3');
-subHeading.textContent = 'Buy high quality organic fruits online';
-subHeading.style.fontStyle = 'italic';
-mainHeading.insertAdjacentElement('afterend', subHeading);
+//const mainHeading = document.getElementById('main-heading');
+//const subHeading = document.createElement('h3');
+//subHeading.textContent = 'Buy high quality organic fruits online';
+//subHeading.style.fontStyle = 'italic';
+//mainHeading.insertAdjacentElement('afterend', subHeading);
 
 // 3 & 4. Create paragraph, set text and ID, and add it before the unordered list
+//const fruitList = document.querySelector('.fruits');
+//const totalFruits = document.createElement('p');
+//totalFruits.textContent = 'Total fruits: 4';
+//totalFruits.id = 'fruits-total';
+//fruitList.insertAdjacentElement('beforebegin', totalFruits);
+
+// 1. Add Edit button to existing list items
 const fruitList = document.querySelector('.fruits');
-const totalFruits = document.createElement('p');
-totalFruits.textContent = 'Total fruits: 4';
-totalFruits.id = 'fruits-total';
-fruitList.insertAdjacentElement('beforebegin', totalFruits);
+const fruits = document.querySelectorAll('.fruit');
+
+fruits.forEach((fruit) => {
+  const editBtn = document.createElement('button');
+  editBtn.className = 'edit-btn';
+  editBtn.textContent = 'Edit';
+  fruit.appendChild(editBtn);
+});
+
+// 2. Implement Add and Delete functionality
+const form = document.querySelector('form');
+
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  // Get the input value
+  const fruitToAdd = document.getElementById('fruit-to-add');
+
+  // Create new li element
+  const li = document.createElement('li');
+  li.className = 'fruit';
+  li.innerHTML = fruitToAdd.value + 
+    '<button class="delete-btn">x</button>' + 
+    '<button class="edit-btn">Edit</button>';
+
+  // Add to list
+  fruitList.appendChild(li);
+  
+  // Clear input
+  fruitToAdd.value = '';
+});
+
+// Delete functionality using Event Delegation
+fruitList.addEventListener('click', function(event) {
+  if (event.target.classList.contains('delete-btn')) {
+    const liToDelete = event.target.parentElement;
+    fruitList.removeChild(liToDelete);
+  }
+});
+
