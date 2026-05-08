@@ -71,10 +71,20 @@
 //totalFruits.textContent = 'Total fruits: 4';
 //totalFruits.id = 'fruits-total';
 //fruitList.insertAdjacentElement('beforebegin', totalFruits);
-
+const form = document.querySelector('form');
 // 1. Add Edit button to existing list items
 const fruitList = document.querySelector('.fruits');
 const fruits = document.querySelectorAll('.fruit');
+const addBtn = form.querySelector('button');
+
+// Create the description input
+const descriptionInput = document.createElement('input');
+descriptionInput.type = 'text';
+descriptionInput.id = 'description';
+descriptionInput.placeholder = 'fruit description...';
+
+// Insert it before the button
+form.insertBefore(descriptionInput, addBtn);
 
 fruits.forEach((fruit) => {
   const editBtn = document.createElement('button');
@@ -84,20 +94,21 @@ fruits.forEach((fruit) => {
 });
 
 // 2. Implement Add and Delete functionality
-const form = document.querySelector('form');
+
 
 form.addEventListener('submit', function(event) {
   event.preventDefault();
 
   // Get the input value
   const fruitToAdd = document.getElementById('fruit-to-add');
-
+  const fruitDesc = document.getElementById('description').value;
   // Create new li element
   const li = document.createElement('li');
   li.className = 'fruit';
   li.innerHTML = fruitToAdd.value + 
+  `${fruitToAdd}<p style="font-style: italic; margin: 0;">${fruitDesc}</p>`+
     '<button class="delete-btn">x</button>' + 
-    '<button class="edit-btn">Edit</button>';
+    '<button class="edit-btn">Edit</button>';   
 
   // Add to list
   fruitList.appendChild(li);
@@ -113,4 +124,23 @@ fruitList.addEventListener('click', function(event) {
     fruitList.removeChild(liToDelete);
   }
 });
+
+const filter = document.getElementById('filter');
+
+filter.addEventListener('keyup', function(e) {
+    const text = e.target.value.toLowerCase();
+    const fruitItems = document.getElementsByClassName('fruit');
+
+    Array.from(fruitItems).forEach(function(item) {
+        const fruitName = item.firstChild.textContent.toLowerCase();
+        const description = item.querySelector('p') ? item.querySelector('p').textContent.toLowerCase() : "";
+
+        if (fruitName.indexOf(text) != -1 || description.indexOf(text) != -1) {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+});
+
 
